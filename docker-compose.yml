@@ -1,0 +1,64 @@
+version: '3.9'
+
+networks:
+  bionexo:
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-app
+    restart: always
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./.docker/mysql:/var/lib/mysql"
+    environment:
+      MYSQL_DATABASE: bionexo
+      MYSQL_USER: userbionexo
+      MYSQL_PASSWORD: 1233219
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      SERVICE_TAGS: dev
+      SERVICE_MYSQL: mysql
+    networks:
+      - bionexo
+  
+  redis:
+    image: redis:alpine
+    container_name: redis-app
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./bionexo:/var/www
+    depends_on:
+      - mysql
+    networks:
+      - bionexo
+
+  php:
+    build: ./.docker/php
+    container_name: php-app
+    volumes:
+      - ./bionexo:/var/www
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - bionexo  
+
+  nginx:
+    build: ./.docker/nginx
+    container_name: nginx-app
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./bionexo:/var/www
+    depends_on:
+      - mysql
+      - redis
+      - php
+    networks:
+      - bionexo

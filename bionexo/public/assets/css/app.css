@@ -1,0 +1,10 @@
+* {
+    background-color: rgb(206, 206, 206);
+}
+
+h1.title {
+    margin-top: 4rem;
+    padding: 0 0 2rem 1rem;
+    text-align: center;
+    text-decoration-line: underline;
+}
