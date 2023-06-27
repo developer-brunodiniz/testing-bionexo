@@ -1,5 +1,27 @@
-* {
-    background-color: rgb(206, 206, 206);
+.wrapper,
+body,
+.modal-content {
+    background-color: rgb(206, 206, 206) !important;
+}
+
+.alignForm {
+    text-align: left;
+}
+
+.buttonForm {
+    position: relative;
+    float: inline-end;
+}
+
+.formulario {
+    padding: 1rem;
+}
+
+footer {
+    bottom: 3rem;
+    position: fixed;
+    width: 100%;
+    text-align: center;
 }
 
 h1.title {

@@ -40,6 +40,8 @@ services:
   php:
     build: ./.docker/php
     container_name: php-app
+    ports:
+      - "9080:9000"
     volumes:
       - ./bionexo:/var/www
     depends_on:

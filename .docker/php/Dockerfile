@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.1-fpm
 
 # set your user name, ex: user=bernardo
 ARG user=bionexo
@@ -46,3 +46,5 @@ RUN ln -s bionexo html
 COPY php-ini-overrides.ini /usr/local/etc/php/conf.d/custom.ini
 
 USER $user
+
+EXPOSE 9080

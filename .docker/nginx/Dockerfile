@@ -1,10 +1,12 @@
-FROM nginx:stable-alpine
+FROM nginx:stable
 
 ARG user=bionexo
 ARG uid=1000
 
-# serve api in development
-RUN apk update && apk add bash
+RUN rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/*
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/conf.d
+
+EXPOSE 80

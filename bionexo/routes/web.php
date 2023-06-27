@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HtmlController::class, 'index']);
-Route::get('/html/store', [HtmlController::class, 'store']);
+Route::post('/html/store', [HtmlController::class, 'store']);
+Route::post('/html/processar/form', [HtmlController::class, 'processarForm']);
